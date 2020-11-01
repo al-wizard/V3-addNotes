@@ -2,6 +2,7 @@
     <base-card>
         <base-button @click="setSelectedTab('stored-resources')" :mode="storedResButtonMode">Stored Resources</base-button>
         <base-button @click="setSelectedTab('add-resource')" :mode="addResButtonMode">Add Resourse</base-button>
+        <base-button @click="setSelectedTab('the-form')" :mode="formButtonMode">Form</base-button>        
     </base-card>
     <keep-alive>
         <component :is="selectedTab"></component>
@@ -11,8 +12,10 @@
 <script>
     import StoredResources from './StoredResources.vue'
     import AddResource from './AddResource.vue'
+    import TheForm from '../form/TheForm.vue';
+
     export default {
-        components: { StoredResources, AddResource }, 
+        components: { StoredResources, AddResource, TheForm }, 
         data() {
             return {
                 selectedTab: 'stored-resources',
@@ -36,6 +39,9 @@
             },
             addResButtonMode(){
                 return this.selectedTab==='add-resource' ? null : 'flat'
+            },
+            formButtonMode(){
+                return this.selectedTab ==='form' ? null : 'flat'
             }
         },
         provide(){
