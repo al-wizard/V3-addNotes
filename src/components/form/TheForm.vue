@@ -7,7 +7,7 @@
     </div>
     <div class="form-control">
       <label for="age">Your Age (Years)</label>
-      <input id="age" name="age" type="number" v-model.number="userAge" />
+      <input id="age" name="age" type="number" v-model="userAge" />
     </div>
     <div class="form-control">
       <label for="referrer">How did you hear about us?</label>
@@ -48,6 +48,9 @@
       </div>
     </div>
     <div class="form-control">
+       <rating-control v-model="rating"></rating-control>
+    </div>
+    <div class="form-control">
       <input type="checkbox" id="confirm-terms" name="confirm-terms" v-model="confirm">
       <label for="confirm-terms">Agree to terms of use?</label>
     </div>
@@ -58,25 +61,39 @@
 </template>
 
 <script>
+  import RatingControl from './RatingControl'
     export default {
+      components: { RatingControl },
       data() {
         return {
           userName: '',
-          useAge: null,
+          userAge: null,
           referrer: 'wom',
           interest: [],
           how: null,
           confirm: false,
-          userNameValidity: 'pending'
+          userNameValidity: 'pending',
+          rating: null
         }
       },
         methods: {
           submitForm() {
-
+            console.log('Username: ', this.userName)
+            console.log('User Age: ', this.userAge)
+            console.log('Referrer: ', this.referrer)
+            console.log('Interests: ', this.interest)
+            console.log('Prefer: ', this.how)            
+            console.log('Rating: ', this.rating)    
+            
+            this.userName = ''
+            this.userAg = null
+            this.referrer = 'wom'
+            this.interest = []
+            this.how = null         
+            this.rating = null    
           },
           validateInput(){
             (this.userName ==='') ? this.userNameValidity = 'invalid' : this.userNameValidity = 'valid'
-            
           }
         }
     }
